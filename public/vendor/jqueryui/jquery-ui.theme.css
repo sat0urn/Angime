@@ -56,7 +56,7 @@
 .ui-widget-header .ui-state-default,
 .ui-button,
 
-/* We use html here because we need a greater specificity to make sure disabled
+/* We use pages here because we need a greater specificity to make sure disabled
 works properly when clicked or hovered */
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {

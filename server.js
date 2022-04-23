@@ -5,7 +5,7 @@ const port = 3000;
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
-app.set('views', 'html')
+app.set('views', 'pages')
 
 app.use("/", require("./routes/root"));
 app.use("/forums", require("./routes/forums"));

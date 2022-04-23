@@ -330,7 +330,7 @@ MagnificPopup.prototype = {
 				windowStyles.overflow = 'hidden';
 			} else {
 				// ie7 double-scroll bug
-				$('body, html').css('overflow', 'hidden');
+				$('body, pages').css('overflow', 'hidden');
 			}
 		}
 
@@ -350,7 +350,7 @@ MagnificPopup.prototype = {
 		_mfpTrigger('BuildControls');
 
 		// remove scrollbar, add margin e.t.c
-		$('html').css(windowStyles);
+		$('pages').css(windowStyles);
 		
 		// add everything to DOM
 		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || $(document.body) );
@@ -421,11 +421,11 @@ MagnificPopup.prototype = {
 		if(mfp.fixedContentPos) {
 			var windowStyles = {marginRight: ''};
 			if(mfp.isIE7) {
-				$('body, html').css('overflow', '');
+				$('body, pages').css('overflow', '');
 			} else {
 				windowStyles.overflow = '';
 			}
-			$('html').css(windowStyles);
+			$('pages').css(windowStyles);
 		}
 		
 		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
