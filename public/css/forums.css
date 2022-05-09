@@ -226,9 +226,12 @@ body{
     margin: 100px 0;
 }
 
-.grid {
+.main_grid {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 85% 15%;
+}
+.main_grid_item {
+    margin-right: 20px;
 }
 .temp{
     font-size: 40px;

@@ -14,6 +14,11 @@ let schema = new mongoose.Schema({
         type: String,
         default: '',
     },
+    password: {
+        type: String,
+        required: true,
+        unique: true,
+    },
 });
 
 let user = new mongoose.model('User', schema);
