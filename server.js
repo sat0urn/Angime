@@ -5,7 +5,7 @@ const ejs = require('ejs')
 const mongoose = require('mongoose')
 const dbConfig = require('./config/database.config')
 const UserRoute = require('./routes/userRoutes')
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
