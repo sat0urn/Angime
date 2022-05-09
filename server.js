@@ -5,7 +5,7 @@ const ejs = require('ejs')
 const mongoose = require('mongoose')
 const dbConfig = require('./config/database.config')
 const UserRoute = require('./routes/userRoutes')
-const port = 3000;
+let port = 3000;
 
 mongoose.Promise = global.Promise;
 
@@ -32,6 +32,10 @@ app.use("/users", require("./routes/users"));
 app.use("/blogs", require("./routes/blogs"));
 app.use("/signup", require("./routes/signup"));
 app.use('/user', UserRoute);
+
+if (port == null || port == "") {
+    port = 3000
+}
 
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
