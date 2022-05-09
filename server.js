@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const ejs = require('ejs')
 const mongoose = require('mongoose')
 const dbConfig = require('./config/database.config')
 const UserRoute = require('./routes/userRoutes')
@@ -34,6 +33,6 @@ app.use("/signup", require("./routes/signup"));
 app.use('/user', UserRoute);
 
 app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}`)
+    console.log(`App listening at http://localhost:3000`)
 )
 
