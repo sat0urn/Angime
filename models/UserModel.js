@@ -6,11 +6,11 @@ let schema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    firstName: {
+    name: {
         type: String,
         default: '',
     },
-    lastName: {
+    surname: {
         type: String,
         default: '',
     },
