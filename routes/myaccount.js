@@ -5,7 +5,7 @@ router
     .route("/")
     .get((req, res) => {
         if (typeof mydata === "undefined") {
-            res.render('signup')
+            res.redirect('/signup')
         }
         res.render('myaccount')
     })
