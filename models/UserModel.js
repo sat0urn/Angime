@@ -10,6 +10,15 @@ let schema = new mongoose.Schema({
         type: String,
         default: '',
     },
+    city: {
+        type: String,
+        default: '',
+    },
+    phone: {
+        type: Number,
+        unique: true,
+        default: '',
+    },
     surname: {
         type: String,
         default: '',

@@ -1,8 +1,10 @@
 const express = require ("express");
+const {findAll} = require("../controllers/UserController");
 const router = express.Router();
-const path = require("path");
+
 router
     .route("/")
-    .get((req, res) => res.render(path.resolve('public/views/users.ejs')))
-    .post((req, res) => res.send("POST_USERS"));
+    .get((req, res) => findAll(req, res))
+    .post((req, res) => res.send("USERS_ROUTE"));
+
 module.exports = router;

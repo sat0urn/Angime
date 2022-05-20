@@ -16,6 +16,6 @@ let schema = new mongoose.Schema({
     },
 });
 
-let forum = new mongoose.model('Forum', schema);
+let blog = new mongoose.model('Blog', schema);
 
-module.exports = forum;
+module.exports = blog;

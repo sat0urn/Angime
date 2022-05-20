@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
+const {create} = require("../controllers/UserController");
 
 router
     .route("/")
-    .get((req, res) => res.render(path.resolve('public/views/signup.ejs')))
-    .post((req, res) => res.render(path.resolve("public/views/signup.ejs")));
+    .get((req, res) => res.render('signup'))
+    .post((req, res) => create(req, res))
+
 module.exports = router;

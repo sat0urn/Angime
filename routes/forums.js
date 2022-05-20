@@ -1,8 +1,10 @@
 const express = require ("express");
 const router = express.Router();
-const path = require("path");
+const {findAll} = require("../controllers/ForumController");
+
 router
     .route("/")
-    .get((req, res) => res.render(path.resolve("public/views/forums.ejs")))
+    .get((req, res) => findAll(req, res))
     .post((req, res) => res.send("POST_FORUMS"));
-module.exports = router;
+
+module.exports = router
