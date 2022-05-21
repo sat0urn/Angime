@@ -17,9 +17,10 @@ exports.create = async (req, res) => {
     });
 
     await user.save().then(() => {
-        res.redirect('/')
+        res.cookie("context", user, { httpOnly: true })
+        res.redirect('/account')
     }).catch(err => {
-        res.render('users', {mydata: err.message || "Some error occurred while creating user"})
+        console.log(err)
     });
 };
 
@@ -88,10 +89,16 @@ exports.update = async (req, res) => {
 exports.destroy = async (req, res) => {
     const currentEmail = req.params.email;
 
-    await UserModel.findOneAndDelete({email: currentEmail}).then((user) => {
+    await UserModel.findOneAndDelete({email: currentEmail}).then(() => {
         res.clearCookie("context", {httpOnly: true})
         res.redirect("/")
     }).catch(err => {
         res.status(500).alert(err);
     });
 };
+
+// Exit
+exports.logout = async (req, res) => {
+    res.clearCookie("context", { httpOnly: true })
+    res.redirect("/");
+}
