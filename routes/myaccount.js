@@ -1,14 +1,16 @@
-const express = require ("express");
+const express = require("express");
 const router = express.Router();
 
 router
     .route("/")
-    .get((req, res) => {
-        if (typeof mydata === "undefined") {
-            res.redirect('/signup')
+    .get(async (req, res) => {
+        const user = req.cookies["context"]
+
+        if (typeof user === "undefined") {
+            res.redirect("/signing")
         }
-        res.render('myaccount')
+
+        res.render('myaccount', {mydata:user})
     })
-    .post((req, res) => res.send("POST_ACC"));
 
 module.exports = router;

@@ -52,34 +52,29 @@ exports.login = async (req, res) => {
     if (user === "")
         res.status(404).redirect('/');
 
-    res.status(200).render('myaccount', {mydata : user});
-}
+    res.cookie("context", user, { httpOnly: true })
 
-// Check
-exports.check = async (req, res) => {
-    if (!gate)
-        res.status(404).redirect('/signup');
-
-    res.status(200).render('myaccount', {mydata : user});
+    if (user.password === req.body.password) {
+        res.redirect('/account')
+    } else {
+        res.redirect('/signing');
+    }
 }
 
 // Update a user by the id in the request
 exports.update = async (req, res) => {
-    if(!req.body) {
-        res.status(400).send({
-            message: "Data to update can not be empty!"
-        });
+
+    if (!req.body.name && !req.body.surname && !req.body.phone && !req.body.city) {
+        res.status(400).render('users', {mydata: "Content can not be empty!"})
     }
 
-    const id = req.params.id;
+    const user = await UserModel.findOne({email: req.body.email}).exec();
 
-    await UserModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(data => {
-        if (!data) {
-            res.status(404).send({
-                message: `User not found.`
-            });
-        }else{
-            res.send({ message: "User updated successfully." })
+    await UserModel.updateOne().then(data => {
+        if (!user) {
+
+        } else{
+
         }
     }).catch(err => {
         res.status(500).send({

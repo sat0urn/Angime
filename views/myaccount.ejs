@@ -12,77 +12,11 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/28517675c6.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Forums</title>
+    <title>Your profile</title>
 </head>
 <body>
 
-
-<header>
-    <!-- Header desktop -->
-    <div class="container-menu-desktop">
-        <!-- Topbar -->
-        <div class="top-bar">
-            <div class="content-topbar flex-sb-m h-full container">
-                <div class="left-top-bar">
-                    You can create forums only by registering
-                </div>
-
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
-                    </a>
-
-                    <a href="account" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
-
-                    <a href="signing" class="flex-c-m trans-04 p-lr-25" data-target=".log-sign">
-                        sign in
-                    </a>
-
-                    <a href="singup" class="flex-c-m trans-04 p-lr-25" data-target=".log-sign">
-                        sign up
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="wrap-menu-desktop">
-            <nav class="limiter-menu-desktop container">
-
-                <!-- Logo desktop -->
-                <a href="/" class="logo">
-                    <img src="img/logo2.png" alt="IMG-LOGO">
-                </a>
-
-                <!-- Menu desktop -->
-                <div class="menu-desktop">
-                    <ul class="main-menu">
-                        <li>
-                            <a href="forums">Forum</a>
-                        </li>
-
-                        <li>
-                            <a href="blogs">Blog</a>
-                        </li>
-
-                        <li>
-                            <a href="users">Users</a>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <!-- Icon header -->
-                <div class="wrap-icon-header flex-w flex-r-m">
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                        <i class="zmdi zmdi-search"> <img src="img/search.png" width="20px" height="20px"></i>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
+<%- include("partials/header.ejs") -%>
 
 <div class="container">
     <div class="main-body">
@@ -168,7 +102,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card mb-3">
+                <form class="card mb-3">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
@@ -206,16 +140,13 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a class="btn btn-info" href="#">Edit</a>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                    <button class="btn btn-info" type="button" data-toggle="modal" data-target="#exampleModal">Edit
+                    </button>
+                </form>
 
                 <div class="card">
-                    <form class="form m-4" action="/account/createForum" method="post">
+                    <form class="form m-4" action="/forums/createForum" method="post">
                         <h1 class="form__title">Create Forum</h1>
                         <div class="form__message form__message--error"></div>
                         <div class="form-group">
@@ -244,5 +175,55 @@
     </div>
 </div>
 
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" style="padding-top: 100px">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form">
+                <div class="form__input-group p-4">
+                    <input name="email" type="email" class="form-control" autofocus placeholder="<%= mydata.email %>" disabled>
+                    <div class="form__input-error-message"></div>
+                </div>
+            </form>
+            <form class="form" action="/users/update" method="post">
+                <div class="modal-body">
+                    <h1 class="form__title">Edit account</h1>
+                    <div class="form__message form__message--error"></div>
+                    <div class="form__input-group pb-2">
+                        <input name="name" type="text" class="form-control" autofocus
+                               placeholder="Name">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group pb-2">
+                        <input name="surname" type="text" class="form-control" autofocus placeholder="Surname">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group pb-2">
+                        <input name="city" type="text" class="form-control" autofocus placeholder="City">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group pb-2">
+                        <input name="phone" type="number" class="form-control" autofocus placeholder="Phone">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
+<%- include('partials/navOpenAnimation.ejs') -%>
 </html>

@@ -228,7 +228,7 @@ body{
 
 .main_grid {
     display: grid;
-    grid-template-columns: 85% 15%;
+    grid-template-columns: 80% 20%;
 }
 .main_grid_item {
     margin-right: 20px;
