@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser")
 const port = process.env.PORT || 3000;
 
 app.use(cookieParser());
-app.use(methodOverride());
+app.use(methodOverride('_method'));
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}))

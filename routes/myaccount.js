@@ -10,7 +10,7 @@ router
             res.redirect("/signing")
         }
 
-        res.render('myaccount', {mydata:user})
+        res.render('myaccount', {mydata : user})
     })
 
 module.exports = router;

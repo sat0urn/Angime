@@ -28,7 +28,7 @@ exports.findAll = async (req, res) => {
     try {
         const user = await UserModel.find();
         res.status(200).render('users', {mydata: user})
-    } catch(error) {
+    } catch (error) {
         res.status(404).render('users', {mydata: error.message})
     }
 };
@@ -37,10 +37,11 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
     try {
         const user = await UserModel.findOne({email: req.query.email}).exec();
-        res.status(200).render('users', {mydata: "user :"+ user.name +" "
-                + user.surname +" "+ user.email +" "+ user.password
+        res.status(200).render('users', {
+            mydata: "user :" + user.name + " "
+                + user.surname + " " + user.email + " " + user.password
         })
-    } catch(error) {
+    } catch (error) {
         res.status(404).render('users', {mydata: error.message})
     }
 };
@@ -52,7 +53,7 @@ exports.login = async (req, res) => {
     if (user === "")
         res.status(404).redirect('/');
 
-    res.cookie("context", user, { httpOnly: true })
+    res.cookie("context", user, {httpOnly: true})
 
     if (user.password === req.body.password) {
         res.redirect('/account')
@@ -63,24 +64,26 @@ exports.login = async (req, res) => {
 
 // Update a user by the id in the request
 exports.update = async (req, res) => {
-
-    if (!req.body.name && !req.body.surname && !req.body.phone && !req.body.city) {
-        res.status(400).render('users', {mydata: "Content can not be empty!"})
+    if (!req.body.newName && !req.body.newSurname && !req.body.newCity && !req.body.newPhone) {
+        res.status(400).send("Content can not be empty!")
     }
 
-    const user = await UserModel.findOne({email: req.body.email}).exec();
+    const currentEmail = req.params.email;
 
-    await UserModel.updateOne().then(data => {
-        if (!user) {
+    console.log(currentEmail)
 
-        } else{
-
-        }
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
-    });
+    await UserModel.findOneAndUpdate({email: currentEmail}, {
+        name: req.body.newName,
+        surname: req.body.newSurname,
+        city: req.body.newCity,
+        phone: req.body.newPhone
+    }).then(async () => {
+        const user = await UserModel.findOne({email: currentEmail}).exec();
+        res.cookie("context", user, {httpOnly: true})
+        res.redirect("/account")
+    }).catch((err) => {
+        console.log(err)
+    })
 };
 
 // Delete a user with the specified id in the request
@@ -89,7 +92,7 @@ exports.destroy = async (req, res) => {
         if (!data) {
             res.status(404).render('users', {mydata: "User not found"}).redirect('/')
         } else {
-            res.render('users', {mydata: "user "+data.name+" deleted succesfully!"})
+            res.render('users', {mydata: "user " + data.name + " deleted succesfully!"})
         }
     }).catch(err => {
         res.status(500).render('users', {mydata: err.message})

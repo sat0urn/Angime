@@ -188,30 +188,31 @@
                 </button>
             </div>
             <form class="form">
-                <div class="form__input-group p-4">
-                    <input name="email" type="email" class="form-control" autofocus placeholder="<%= mydata.email %>" disabled>
+                <div class="form__input-group p-3">
+                    <label for="email">Your email</label>
+                    <input name="email" id="email" type="email" class="form-control" autofocus placeholder="<%= mydata.email %>" disabled>
                     <div class="form__input-error-message"></div>
                 </div>
             </form>
-            <form class="form" action="/users/update" method="post">
+            <form class="form" action="/users/update/<%= mydata.email %>?_method=PATCH" method="post">
                 <div class="modal-body">
                     <h1 class="form__title">Edit account</h1>
                     <div class="form__message form__message--error"></div>
                     <div class="form__input-group pb-2">
-                        <input name="name" type="text" class="form-control" autofocus
+                        <input name="newName" type="text" class="form-control" autofocus
                                placeholder="Name">
                         <div class="form__input-error-message"></div>
                     </div>
                     <div class="form__input-group pb-2">
-                        <input name="surname" type="text" class="form-control" autofocus placeholder="Surname">
+                        <input name="newSurname" type="text" class="form-control" autofocus placeholder="Surname">
                         <div class="form__input-error-message"></div>
                     </div>
                     <div class="form__input-group pb-2">
-                        <input name="city" type="text" class="form-control" autofocus placeholder="City">
+                        <input name="newCity" type="text" class="form-control" autofocus placeholder="City">
                         <div class="form__input-error-message"></div>
                     </div>
                     <div class="form__input-group pb-2">
-                        <input name="phone" type="number" class="form-control" autofocus placeholder="Phone">
+                        <input name="newPhone" type="number" class="form-control" autofocus placeholder="Phone">
                         <div class="form__input-error-message"></div>
                     </div>
                 </div>
