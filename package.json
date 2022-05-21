@@ -8,7 +8,7 @@
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aslan & Olzhas",
   "license": "ISC",
   "engines": {
     "node": "16.14.2"
@@ -16,11 +16,13 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "method-override": "^3.0.0",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.3.2"
+    "mongoose": "^6.3.2",
+    "mongoose-encryption": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

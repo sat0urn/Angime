@@ -19,6 +19,7 @@ exports.create = async (req, res) => {
     });
 };
 
+// Finding all forums
 exports.findAll = async (req, res) => {
     try {
         const forum = await ForumModel.find();

@@ -1,8 +1,10 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override")
 const mongoose = require('mongoose')
+const encrypt = require('mongoose-encryption')
 const dbConfig = require('./config/database.config')
 const UserRoute = require('./routes/UserRoutes')
 const ForumRoute = require('./routes/ForumRoutes')
@@ -22,7 +24,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
-    console.log("Database Connected Successfully!!");
+    console.log("Database Connected Successfully!");
 }).catch(err => {
     console.log('Could not connect to the database', err);
     process.exit();

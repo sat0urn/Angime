@@ -34,7 +34,7 @@ exports.findAll = async (req, res) => {
     }
 };
 
-// Find a single User with an id
+// Find a single User with an email
 exports.findOne = async (req, res) => {
     try {
         const user = await UserModel.findOne({email: req.query.email}).exec();
@@ -51,19 +51,18 @@ exports.findOne = async (req, res) => {
 exports.login = async (req, res) => {
     const user = await UserModel.findOne({email: req.body.email}).exec();
 
-    if (user === "")
-        res.status(404).redirect('/');
-
-    res.cookie("context", user, {httpOnly: true})
+    if (!user)
+        res.status(404).send("404. User was not found!");
 
     if (user.password === req.body.password) {
+        res.cookie("context", user, {httpOnly: true})
         res.redirect('/account')
     } else {
         res.redirect('/signing');
     }
 }
 
-// Update a user by the id in the request
+// Update a user by the email
 exports.update = async (req, res) => {
     if (!req.body.newName && !req.body.newSurname && !req.body.newCity && !req.body.newPhone) {
         res.status(400).send("Content can not be empty!")
@@ -81,11 +80,11 @@ exports.update = async (req, res) => {
         res.cookie("context", user, {httpOnly: true})
         res.redirect("/account")
     }).catch((err) => {
-        console.log(err)
+        res.status(500).send(err);
     })
 };
 
-// Delete a user with the specified id in the request
+// Delete a user with the specified email
 exports.destroy = async (req, res) => {
     const currentEmail = req.params.email;
 
@@ -93,7 +92,7 @@ exports.destroy = async (req, res) => {
         res.clearCookie("context", {httpOnly: true})
         res.redirect("/")
     }).catch(err => {
-        res.status(500).alert(err);
+        res.status(500).send(err);
     });
 };
 
