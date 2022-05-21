@@ -70,8 +70,6 @@ exports.update = async (req, res) => {
 
     const currentEmail = req.params.email;
 
-    console.log(currentEmail)
-
     await UserModel.findOneAndUpdate({email: currentEmail}, {
         name: req.body.newName,
         surname: req.body.newSurname,
@@ -88,13 +86,12 @@ exports.update = async (req, res) => {
 
 // Delete a user with the specified id in the request
 exports.destroy = async (req, res) => {
-    await UserModel.deleteOne({email: req.query.email}).then(data => {
-        if (!data) {
-            res.status(404).render('users', {mydata: "User not found"}).redirect('/')
-        } else {
-            res.render('users', {mydata: "user " + data.name + " deleted succesfully!"})
-        }
+    const currentEmail = req.params.email;
+
+    await UserModel.findOneAndDelete({email: currentEmail}).then((user) => {
+        res.clearCookie("context", {httpOnly: true})
+        res.redirect("/")
     }).catch(err => {
-        res.status(500).render('users', {mydata: err.message})
+        res.status(500).alert(err);
     });
 };
