@@ -28,7 +28,7 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                  class="rounded-circle" width="150">
                             <div>
-                                <h4><%= mydata.name %> <%= mydata.surname %></h4>
+                                <h4><%= mydata.username %> <%= mydata.surname %></h4>
                                 <p class="text-secondary mb-1">User of Angime</p>
                                 <p class="text-muted font-size-sm"><%= mydata.city %></p>
                             </div>
@@ -114,7 +114,7 @@
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <%= mydata.name %> <%= mydata.surname %>
+                                <%= mydata.username %> <%= mydata.surname %>
                             </div>
                         </div>
                         <hr>
@@ -162,33 +162,104 @@
                     </div>
                 </form>
 
-                <div class="card">
-                    <form class="form m-4" action="/forums/createForum" method="post">
-                        <h1 class="form__title">Create Forum</h1>
-                        <div class="form__message form__message--error"></div>
-                        <div class="form-group">
-                            <label>Author</label>
-                            <input name="author" type="text" class="form-control" autofocus placeholder="Author">
-                            <div class="form__input-error-message"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input name="title" type="text" class="form-control" autofocus placeholder="Title">
-                            <div class="form__input-error-message"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="bodyOf" type="text" class="form-control" autofocus
-                                      placeholder="Body"></textarea>
-                            <div class="form__input-error-message"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            Send
+                <div class="card flex-row">
+                    <div class="flex-column w-50">
+                        <button class="btn btn-info d-block w-100" type="button" data-toggle="modal"
+                                data-target="#createForum">
+                            Create Forum
                         </button>
-                    </form>
+                        <div class="card-header text-center">
+                            Your forums!
+                        </div>
+                    </div>
+                    <div class="flex-column w-50">
+                        <button class="btn btn-danger d-block w-100" type="button" data-toggle="modal"
+                                data-target="#createBlog">
+                            Create Blog
+                        </button>
+                        <div class="card-header text-center">
+                            Your blogs!
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modal <Create Forum> -->
+
+<div class="modal fade p-t-100" id="createForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="form m-4 modal-content" action="/forums/createForum" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Forum</h5>
+                <div class="form__message form__message--error"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Author</label>
+                    <input name="author" type="text" class="form-control" autofocus placeholder="Author">
+                    <div class="form__input-error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input name="title" type="text" class="form-control" autofocus placeholder="Title">
+                    <div class="form__input-error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="bodyOf" type="text" class="form-control" autofocus
+                              placeholder="Body"></textarea>
+                    <div class="form__input-error-message"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal <Create Blog> -->
+
+<div class="modal fade p-t-100" id="createBlog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="form m-4 modal-content" action="/blogs/createBlog" method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Forum</h5>
+                <div class="form__message form__message--error"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input name="title" id="title" type="text" class="form-control" autofocus placeholder="Title"
+                           required>
+                    <div class="form__input-error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="body">Body</label>
+                    <input name="body" id="body" type="text" class="form-control" autofocus placeholder="Body" required>
+                    <div class="form__input-error-message"></div>
+                </div>
+                <form class="form-group" enctype="multipart/form-data">
+                    <label for="image">Image</label>
+                    <input name="image" id="image" type="file" class="form-control">
+                    <div class="form__input-error-message"></div>
+                </form>
+                <button type="submit" class="btn btn-primary mt-3">
+                    Submit
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -279,5 +350,7 @@
     </div>
 </div>
 </body>
+
 <%- include('partials/navOpenAnimation.ejs') -%>
+
 </html>

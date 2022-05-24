@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
     });
 
     await forum.save().then(() => {
-        res.redirect('/forums')
+        res.redirect('/account')
     }).catch(() => {
         alert("You have the same author!")
     });

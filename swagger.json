@@ -1,0 +1,397 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Angime",
+    "description": "Forum to Discuss about Everything",
+    "contact": {
+      "name": "API Support",
+      "url": "https://sheltered-reef-26424.herokuapp.com/api-docs",
+      "email": "alex.family.2202@gmail.com"
+    },
+    "license": {
+      "name": "Angime Heroku Web",
+      "url": "https://sheltered-reef-26424.herokuapp.com/"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Forum",
+      "description": "API about forums managing"
+    },
+    {
+      "name": "Blog",
+      "description": "API about blogs managing"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "Everything is Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create a new user",
+        "description": "Create new user in system by registering",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To register for an account",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created / You have registered",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User authorization",
+        "description": "Authorization to enter the site",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To log in an account",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have logged in",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Remove user from session",
+        "description": "Sign out function",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To log out from an account",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have logged out",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/users/update/:email": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user data",
+        "description": "Edit your personal data",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To update data in database by using email address",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/users/delete/:email": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user",
+        "description": "Delete your account",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Delete user by email",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/forums/": {
+      "get": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Get all forums in systems",
+        "description": "Show forums as one",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Get all forums",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Forums appeared on the screen",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/forums/createForum": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Create a new forum",
+        "description": "Create forum from account page",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Create forum",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Forum was created successfully!",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/blogs/": {
+      "get": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Get all blogs in systems",
+        "description": "Show blogs as one",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Get all blogs",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blogs appeared on the screen",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/blogs/createBlog": {
+      "post": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Create a new blog",
+        "description": "Create blog from account page",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Create blog",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog was created successfully!",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": ["email", "username"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "required": true,
+          "uniqueItems": true
+        },
+        "username": {
+          "type": "string",
+          "required": true,
+          "default": ""
+        },
+        "city": {
+          "type": "string",
+          "default": ""
+        },
+        "phone": {
+          "type": "number",
+          "uniqueItems": true,
+          "default": null
+        },
+        "surname": {
+          "type": "string",
+          "default": ""
+        },
+        "password": {
+          "type": "string"
+        },
+        "googleId": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "Forum": {
+      "required": ["title", "bodyOf", "author"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "uniqueItems": true
+        },
+        "bodyOf": {
+          "type": "string",
+          "required": true
+        },
+        "author": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "Blog": {
+      "required": ["title", "body", "coverImageName"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "uniqueItems": true
+        },
+        "body": {
+          "type": "string",
+          "required": true
+        },
+        "coverImageName": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  }
+}

@@ -1,37 +1,68 @@
 const mongoose = require('mongoose');
-const encrypt = require('mongoose-encryption')
+const passportLocalMongoose = require('passport-local-mongoose')
+const passport = require("passport");
 
-let schema = new mongoose.Schema({
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
+
+const schema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
+        require: true,
         unique: true,
     },
-    name: {
+    username: {
         type: String,
-        default: '',
+        require: true,
+        default: ''
     },
     city: {
         type: String,
-        default: '',
+        default: ''
     },
     phone: {
         type: Number,
         unique: true,
-        default: '',
+        default: null
     },
     surname: {
         type: String,
-        default: '',
+        default: ''
     },
     password: {
         type: String,
-        required: true,
     },
+    googleId: {
+        type: String,
+        default: ''
+    }
 });
 
-schema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["password"] })
+schema.plugin(passportLocalMongoose, { usernameField: 'email' })
+schema.plugin(findOrCreate)
 
-let user = new mongoose.model('User', schema);
+let UserModel = new mongoose.model('User', schema);
 
-module.exports = user;
+passport.serializeUser((user, done) => {
+    done(null, user._id)
+});
+passport.deserializeUser((id, done) => {
+    UserModel.findById(id, (err, user) => {
+        done(err, user)
+    })
+});
+
+passport.use(UserModel.createStrategy())
+
+passport.use(new GoogleStrategy({
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/google/angime"
+    }, async (accessToken, refreshToken, email, cb) => {
+        UserModel.findOrCreate({email: email._json.email, googleId: email.id}, (err, user) => {
+            return cb(err, user);
+        })
+    }
+));
+
+module.exports = UserModel;
