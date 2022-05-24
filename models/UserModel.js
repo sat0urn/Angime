@@ -55,9 +55,9 @@ passport.deserializeUser((id, done) => {
 passport.use(UserModel.createStrategy())
 
 passport.use(new GoogleStrategy({
-        clientID: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "https://sheltered-reef-26424.herokuapp.com/auth/google/angime"
+        clientID: process.env.CLIENT_ID_HEROKU,
+        clientSecret: process.env.CLIENT_SECRET_HEROKU,
+        callbackURL: "https://sheltered-reef-26424.herokuapp.com/auth/google/angimeHeroku"
     }, async (accessToken, refreshToken, email, cb) => {
         UserModel.findOrCreate({email: email._json.email, googleId: email.id}, (err, user) => {
             if (err)
