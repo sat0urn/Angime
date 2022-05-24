@@ -12,7 +12,7 @@ exports.registration = async (req, res) => {
         surname: req.body.surname,
     }), req.body.password, (error, user) => {
         if (error) {
-            console.log("404")
+            console.log(error.message)
         }
         passport.authenticate('local',
             {

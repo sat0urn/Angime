@@ -60,6 +60,8 @@ passport.use(new GoogleStrategy({
         callbackURL: "http://localhost:3000/auth/google/angime"
     }, async (accessToken, refreshToken, email, cb) => {
         UserModel.findOrCreate({email: email._json.email, googleId: email.id}, (err, user) => {
+            if (err)
+                return cb(null, false, { message: "User is already created" })
             return cb(err, user);
         })
     }
