@@ -13,7 +13,6 @@ const session = require('express-session');
 const passport = require('passport');
 const {isLoggedIn, isAuth} = require('./middlewares/authMiddleware');
 const flash = require('express-flash');
-const connectFlash = require('connect-flash')
 const swaggerUi = require('swagger-ui-express');
 swaggerDocument = require('./swagger.json');
 
@@ -41,7 +40,6 @@ app.use(cookieParser());
 app.use(methodOverride('_method'));
 
 app.use(flash())
-app.use(connectFlash())
 app.use(session({
     secret: process.env.SECRET,
     resave: false,

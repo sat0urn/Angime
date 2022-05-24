@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
 
     req.login(user, function (err) {
         if (err) {
-            console.log("ERROR!")
+            console.log(err.message)
         } else {
             passport.authenticate('local',
                 {
@@ -115,6 +115,4 @@ exports.logout = async (req, res) => {
         res.clearCookie("context", {httpOnly: true})
         res.redirect("/")
     })
-    /*res.clearCookie("context", { httpOnly: true })
-    res.redirect("/");*/
 }
