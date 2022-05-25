@@ -22,11 +22,9 @@ exports.create = async (req, res) => {
 exports.findAll = async (req, res) => {
     try {
         const blogs = await BlogModel.find({})
-        res.render("blogs", {
-            blogsData: blogs
-        })
-    } catch {
-        res.redirect("/")
+        res.status(200).render("blogs", {blogsData: blogs})
+    } catch(error) {
+        res.status(404).render("404", {mydata: error.message})
     }
 
 };

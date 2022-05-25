@@ -25,7 +25,7 @@ exports.findAll = async (req, res) => {
         const forum = await ForumModel.find();
         res.status(200).render('forums', {mydata: forum})
     } catch (error) {
-        res.status(404).render('forums', {mydata: error.message})
+        res.status(404).render('404', {mydata: error.message})
     }
 };
 

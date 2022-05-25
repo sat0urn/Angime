@@ -71,7 +71,7 @@ exports.findOne = async (req, res) => {
                 + user.surname + " " + user.email
         })
     } catch (error) {
-        res.status(404).render('users', {mydata: error.message})
+        res.status(404).render('404', {mydata: error.message})
     }
 };
 
