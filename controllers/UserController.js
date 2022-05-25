@@ -58,7 +58,7 @@ exports.findAll = async (req, res) => {
         const user = await UserModel.find();
         res.status(200).render('users', {mydata: user})
     } catch (error) {
-        res.status(404).render('users', {mydata: error.message})
+        res.status(404).render('404', {mydata: error.message})
     }
 };
 

@@ -57,7 +57,8 @@ app.use("/account", isLoggedIn, require("./routes/myaccount"))
 app.use('/users', UserRoute);
 app.use('/forums', ForumRoute);
 app.use('/blogs', BlogRoute);
-app.use('/auth', GoogleRoute)
+app.use('/auth', GoogleRoute);
+
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
 
