@@ -55,8 +55,8 @@ exports.login = async (req, res) => {
 // Retrieve all users from the database.
 exports.findAll = async (req, res) => {
     try {
-        const user = await UserModel.find();
-        res.status(200).render('users', {mydata: user})
+        const users = await UserModel.find();
+        res.status(200).render('users', {mydata: users})
     } catch (error) {
         res.status(404).render('404', {mydata: error.message})
     }
@@ -105,7 +105,7 @@ exports.delete = async (req, res) => {
         res.clearCookie("context", {httpOnly: true})
         res.redirect("/")
     }).catch(err => {
-        res.status(500).send(err);
+        res.status(500).send(err.message);
     });
 };
 

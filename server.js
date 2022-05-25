@@ -59,6 +59,5 @@ app.use('/forums', ForumRoute);
 app.use('/blogs', BlogRoute);
 app.use('/auth', GoogleRoute);
 
-
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
 
