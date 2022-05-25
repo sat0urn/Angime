@@ -75,7 +75,7 @@
         ],
         "summary": "Create a new user",
         "description": "Create new user in system by registering",
-        "operationId": "createUserUsingPOST",
+        "operationId": "registerUserUsingPOST",
         "parameters": [
           {
             "name": "user",
@@ -116,6 +116,7 @@
         ],
         "summary": "User authorization",
         "description": "Authorization to enter the site",
+        "operationId": "loginUserUsingPOST",
         "parameters": [
           {
             "name": "user",
@@ -156,6 +157,7 @@
         ],
         "summary": "Remove user from session",
         "description": "Sign out function",
+        "operationId": "logoutUsingGET",
         "parameters": [
           {
             "name": "user",
@@ -278,6 +280,7 @@
         ],
         "summary": "Get all forums in systems",
         "description": "Show forums as one",
+        "operationId": "getForumsUsingGET",
         "parameters": [
           {
             "name": "user",
@@ -318,6 +321,7 @@
         ],
         "summary": "Create a new forum",
         "description": "Create forum from account page",
+        "operationId": "createForumUsingPOST",
         "parameters": [
           {
             "name": "user",
@@ -358,6 +362,7 @@
         ],
         "summary": "Get all blogs in systems",
         "description": "Show blogs as one",
+        "operationId": "getBlogsUsingGET",
         "parameters": [
           {
             "name": "user",
@@ -398,6 +403,7 @@
         ],
         "summary": "Create a new blog",
         "description": "Create blog from account page",
+        "operationId": "createBlogUsingPOST",
         "parameters": [
           {
             "name": "user",
