@@ -55,9 +55,9 @@ passport.deserializeUser((id, done) => {
 passport.use(UserModel.createStrategy())
 
 passport.use(new GoogleStrategy({
-        clientID: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: process.env.CALLBACK_URL
+        clientID: process.env.CLIENT_ID_HEROKU,
+        clientSecret: process.env.CLIENT_SECRET_HEROKU,
+        callbackURL: process.env.CALLBACK_URL_HEROKU
     }, async (accessToken, refreshToken, email, cb) => {
         UserModel.findOrCreate({email: email._json.email, googleId: email.id}, (err, user) => {
             if (err)
