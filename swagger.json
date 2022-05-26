@@ -6,7 +6,7 @@
     "description": "Forum to Discuss about Everything",
     "contact": {
       "name": "Aslan & Olzhas",
-      "url": "https://sheltered-reef-26424.herokuapp.com/",
+      "url": "https://angime.herokuapp.com/",
       "email": "alex.family.2202@gmail.com"
     },
     "license": {
@@ -14,7 +14,7 @@
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "localhost:3000",
+  "host": "angime.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -30,7 +30,7 @@
       "description": "API about blogs managing"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
