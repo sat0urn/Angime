@@ -40,10 +40,10 @@ exports.login = async (req, res) => {
         } else {
             passport.authenticate('local',
                 {
-                    failureRedirect: "/signing",
-                    failureFlash: true
-                }
-            )(req, res, async function () {
+                    failureFlash: true,
+                    failureRedirect: "/signing"
+                })
+            (req, res, async function () {
                 const UserOf = await UserModel.findOne({email: req.body.email}).exec()
                 res.cookie("context", UserOf, {httpOnly: true})
                 res.redirect("/account")

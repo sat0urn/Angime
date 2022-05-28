@@ -14,7 +14,7 @@
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "angime.herokuapp.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "tags": [
     {
@@ -30,32 +30,23 @@
       "description": "API about blogs managing"
     }
   ],
-  "schemes": ["https"],
+  "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/users/": {
+    "/users": {
       "get": {
         "tags": [
           "User"
         ],
         "summary": "Get all users in system",
         "operationId": "getUsersUsingGET",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "To get users",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Successfully retrieved all users",
             "schema": {
+              "type": "array",
               "$ref": "#/definitions/User"
             }
           },
@@ -124,7 +115,18 @@
             "description": "To log in an account",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/User"
+              "type": "array",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "uniqueItems": true,
+                  "required": true
+                },
+                "password": {
+                  "type": "string",
+                  "required": true
+                }
+              }
             }
           }
         ],
@@ -132,11 +134,14 @@
           "200": {
             "description": "You have logged in",
             "schema": {
-              "$ref": "#/definitions/User"
+              "example": "OK"
             }
           },
           "401": {
-            "description": "You are not authorized to view the resource"
+            "description": "You are not authorized to view the resource",
+            "schema": {
+              "example": "User is not authorized!"
+            }
           },
           "404": {
             "description": "The resource you were trying to reach is not found"
@@ -171,10 +176,7 @@
         ],
         "responses": {
           "200": {
-            "description": "You have logged out",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "You have logged out"
           },
           "401": {
             "description": "You are not authorized to manage the resource"
@@ -471,7 +473,7 @@
         },
         "googleId": {
           "type": "string",
-          "default": "empty string"
+          "default": ""
         }
       }
     },

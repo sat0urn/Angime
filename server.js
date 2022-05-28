@@ -51,7 +51,7 @@ app.use(passport.session())
 
 app.use("/", require("./routes/root"));
 app.use("/signup", isAuth, require("./routes/signup"));
-app.use("/signing", isAuth, require("./routes/signin"))
+app.use("/signing", isAuth, require("./routes/signing"))
 app.use("/account", isLoggedIn, require("./routes/myaccount"))
 
 app.use('/users', UserRoute);

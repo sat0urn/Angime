@@ -3,6 +3,6 @@ const router = express.Router();
 
 router
     .route("/")
-    .get((req, res) => res.render('signin'))
+    .get((req, res) => res.render('signing'))
 
 module.exports = router;

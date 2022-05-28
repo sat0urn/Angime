@@ -1,8 +1,9 @@
 const express = require('express');
 const UserController = require('../controllers/UserController');
+const {isLoggedIn} = require('../middlewares/authMiddleware')
 const router = express.Router();
 
-router.get('/', UserController.findAll)
+router.get('/', isLoggedIn, UserController.findAll)
 router.post('/register', UserController.registration)
 router.post('/login', UserController.login)
 router.get('/logout', UserController.logout)
